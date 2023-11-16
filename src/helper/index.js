@@ -3,5 +3,8 @@ module.exports = container => {
   const commentHelper = require('./commentHelper')(container)
   const reactionHelper = require('./reactionHelper')(container)
   const userHelper = require('./userHelper')(container)
-  return { feedHelper, commentHelper, reactionHelper, userHelper }
+  const groupHelper = require('./groupHelper')(container)
+  const userGroupHelper = require('./userGroupHelper')(container)
+  const modHelper = require('./modHelper')(container)
+  return { feedHelper, commentHelper, reactionHelper, userHelper, groupHelper, userGroupHelper, modHelper }
 }
