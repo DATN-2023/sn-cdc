@@ -52,9 +52,26 @@ module.exports = (container) => {
       return { statusCode: httpCode.BAD_REQUEST, msg: '' }
     }
   }
+  const deleteUserGroupByUserAndGroup = async (body) => {
+    try {
+      const options = {
+        headers: { 'x-access-token': accessToken },
+        url: `${groupUrl}/cdc/userGroups`,
+        json: true,
+        data: body,
+        method: 'DELETE'
+      }
+      const { data } = await axios(options)
+      return { statusCode: httpCode.SUCCESS, data }
+    } catch (e) {
+      logger.e(e)
+      return { statusCode: httpCode.BAD_REQUEST, msg: '' }
+    }
+  }
   return {
     createUserGroup,
     updateUserGroup,
-    deleteUserGroup
+    deleteUserGroup,
+    deleteUserGroupByUserAndGroup
   }
 }
