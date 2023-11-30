@@ -6,4 +6,5 @@ module.exports = (app, container) => {
   require('./userGroupApi')(app, container)
   require('./modApi')(app, container)
   require('./userApi')(app, container)
+  require('./fcmtokenApi')(app, container)
 }

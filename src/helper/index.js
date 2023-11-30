@@ -6,5 +6,6 @@ module.exports = container => {
   const groupHelper = require('./groupHelper')(container)
   const userGroupHelper = require('./userGroupHelper')(container)
   const modHelper = require('./modHelper')(container)
-  return { feedHelper, commentHelper, reactionHelper, userHelper, groupHelper, userGroupHelper, modHelper }
+  const fcmtokenHelper = require('./fcmtokenHelper')(container)
+  return { feedHelper, commentHelper, reactionHelper, userHelper, groupHelper, userGroupHelper, modHelper, fcmtokenHelper }
 }
