@@ -46,9 +46,24 @@ module.exports = (container) => {
     }
   }
 
+  const deleteUserGroupByUserAndGroup = async (req, res) => {
+    try {
+      const body = req.body
+      const { statusCode, data, msg } = await groupHelper.deleteUserGroupByUserAndGroup(body)
+      if (statusCode !== httpCode.SUCCESS) {
+        return res.status(httpCode.BAD_REQUEST).json(msg)
+      }
+      res.status(statusCode).json(data)
+    } catch (e) {
+      logger.e(e)
+      res.status(httpCode.UNKNOWN_ERROR).json({ msg: 'UNKNOWN ERROR' })
+    }
+  }
+
   return {
     createUserGroup,
     updateUserGroup,
-    deleteUserGroup
+    deleteUserGroup,
+    deleteUserGroupByUserAndGroup
   }
 }
