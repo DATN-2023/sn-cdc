@@ -37,12 +37,13 @@ module.exports = (container) => {
       return { statusCode: httpCode.BAD_REQUEST, msg: '' }
     }
   }
-  const deleteFcmtoken = async (id) => {
+  const deleteFcmtoken = async (body) => {
     try {
       const options = {
         headers: { 'x-access-token': accessToken },
-        url: `${notificationUrl}/cdc/fcmtokens/${id}`,
+        url: `${notificationUrl}/cdc/fcmtokens`,
         json: true,
+        data: body,
         method: 'DELETE'
       }
       const { data } = await axios(options)
