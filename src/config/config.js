@@ -59,7 +59,8 @@ const urlConfig = {
   feedUrl: process.env.FEED_URL || 'http://localhost:8003',
   userUrl: process.env.USER_URL || 'http://localhost:8006',
   groupUrl: process.env.USER_URL || 'http://localhost:8007',
-  notificationUrl: process.env.NOTIFICATION_URL || 'http://localhost:8008'
+  notificationUrl: process.env.NOTIFICATION_URL || 'http://localhost:8008',
+  chatUrl: process.env.CHAT_URL || 'http://localhost:8009'
 }
 
 module.exports = { dbSettings, serverHelper: serverHelper(), serverSettings, httpCode, urlConfig }
