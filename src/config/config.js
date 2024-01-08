@@ -58,7 +58,7 @@ const serverHelper = function () {
 const urlConfig = {
   feedUrl: process.env.FEED_URL || 'http://localhost:8003',
   userUrl: process.env.USER_URL || 'http://localhost:8006',
-  groupUrl: process.env.USER_URL || 'http://localhost:8007',
+  groupUrl: process.env.GROUP_URL || 'http://localhost:8007',
   notificationUrl: process.env.NOTIFICATION_URL || 'http://localhost:8008',
   chatUrl: process.env.CHAT_URL || 'http://localhost:8009'
 }
