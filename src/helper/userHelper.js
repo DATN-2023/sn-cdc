@@ -1,4 +1,4 @@
-const axios = require('axios')
+const axios = require("axios");
 module.exports = (container) => {
   const { urlConfig: { userUrl }, httpCode } = container.resolve('config')
   const logger = container.resolve('logger')
@@ -26,6 +26,22 @@ module.exports = (container) => {
       const options = {
         headers: { 'x-access-token': accessToken },
         url: `${userUrl}/cdc/users/${id}`,
+        json: true,
+        data: body,
+        method: 'PUT'
+      }
+      const { data } = await axios(options)
+      return { statusCode: httpCode.SUCCESS, data }
+    } catch (e) {
+      logger.e(e)
+      return { statusCode: httpCode.BAD_REQUEST, msg: '' }
+    }
+  }
+  const updateTotalFeed = async (id, body) => {
+    try {
+      const options = {
+        headers: { 'x-access-token': accessToken },
+        url: `${userUrl}/cdc/users/${id}/feed`,
         json: true,
         data: body,
         method: 'PUT'
@@ -107,6 +123,7 @@ module.exports = (container) => {
     deleteUser,
     createFriend,
     updateFriend,
-    deleteFriend
+    deleteFriend,
+    updateTotalFeed
   }
 }

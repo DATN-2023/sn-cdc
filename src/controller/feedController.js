@@ -1,7 +1,7 @@
 module.exports = (container) => {
   const logger = container.resolve('logger')
   const { httpCode, serverHelper } = container.resolve('config')
-  const { feedHelper } = container.resolve('helper')
+  const { feedHelper, userHelper } = container.resolve('helper')
 
   const createFeed = async (req, res) => {
     try {
@@ -10,6 +10,7 @@ module.exports = (container) => {
       if (statusCode !== httpCode.SUCCESS) {
         return res.status(httpCode.BAD_REQUEST).json(msg)
       }
+      await userHelper.updateTotalFeed(body.createdBy, {isAdd: 1})
       res.status(statusCode).json(data)
     } catch (e) {
       logger.e(e)
@@ -39,6 +40,7 @@ module.exports = (container) => {
       if (statusCode !== httpCode.SUCCESS) {
         return res.status(httpCode.BAD_REQUEST).json(msg)
       }
+      await userHelper.updateTotalFeed(data.createdBy, {isAdd: 0})
       res.status(statusCode).json(data)
     } catch (e) {
       logger.e(e)
